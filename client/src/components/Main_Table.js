@@ -110,9 +110,9 @@ class MainTable extends Component {
 
     const csvData =[
       ["accountNumber", "advisor", "clientssss", "accountBalance", "description", "accountValue", "moneyMarket", "buyingPower", "netBalance", "aumPercentage", "billBy"] ,
-      ["941828437", "ABC2", "Kobe Bryant", "20000000", "Kobe Bryant Account", "20000000", "2500", "0", "0", "1.5", "4"] ,
+      ["941828437", "ABC2", "John Doe", "20000000", "John Doe Account", "20000000", "2500", "0", "0", "1.5", "4"] ,
       ["941828437", "ABC2", "Jeffrey Yourman", "5000000", "Jeffrey Yourman Account", "5000000", "2500", "0", "0", "1.5", "4"] ,
-      ["941828437", "ABC2", "Devin Booker", "10000000", "Devin Booker Account", "10000000", "2500", "0", "0", "1.5", "4"]
+      ["941828437", "ABC2", "Allen Parker", "10000000", "Allen Parker Account", "10000000", "2500", "0", "0", "1.5", "4"]
     ];
 
     const selectedArray = [];

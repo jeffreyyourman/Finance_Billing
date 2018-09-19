@@ -8,8 +8,10 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var User = require('./models/user');
 var Data = require('./models/data');
+const keys = require('./keys')
 
-mongoose.connect("mongodb://jeffreyyourman:Lakers24@ds141474.mlab.com:41474/financebillingjwd");
+mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
+
 var db = mongoose.connection;
 
 //handle mongo error
@@ -41,9 +43,7 @@ app.use('/', routes);
 // Put all API endpoints under '/api'
 app.get('/api/data', (req, res) => {
   Data.find(function (err, docs) {
-    console.log(docs);
     res.json(docs);
-    // fdas
   })
 });
 
@@ -53,7 +53,7 @@ app.post('/importData', (req, res) => {
 
       const loopedImportData = newImportData[i];
 
-      Data.update({"advisorEmail":"testuser@finance.com"}, {"$push": { "data":loopedImportData}}, function(err, updateData){
+      Data.update({"advisorEmail": req.session.email}, {"$push": { "data":loopedImportData}}, function(err, updateData){
         if (err) throw (err);
         console.log('inside update', updateData);
     });
@@ -67,7 +67,7 @@ app.post('/updateData', (req, res) => {
 
       const loopedUpdatePercentage = newUpdatePercentage[i];
 
-    //   Data.update({"advisorEmail":"testuser@finance.com"}, {"$push": { "data":loopedImportData}}, function(err, updateData){
+    //   Data.update({"advisorEmail":req.session.email}, {"$push": { "data":loopedImportData}}, function(err, updateData){
     //     if (err) throw (err);
     //     console.log('inside update', updateData);
     // });
