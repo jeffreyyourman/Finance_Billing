@@ -12,14 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
-    "password-generator": "^2.2.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "connect-mongo": "^2.0.1",
+    "express": "^4.16.3",
     "express-session": "^1.15.6",
     "match-sorter": "^2.2.3",
     "mongojs": "^2.5.0",
-    "mongoose": "^5.0.16"
+    "mongoose": "^5.0.16",
+    "password-generator": "^2.2.0",
+    "react-csv": "^1.0.15-RC2"
   }
 }

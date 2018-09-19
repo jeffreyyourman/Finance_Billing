@@ -10,6 +10,7 @@ import '.././styles/maintable.css';
 import NumberFormat from 'react-number-format';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import {CSVLink, CSVDownload} from 'react-csv';
 
 class MainTable extends Component {
   constructor(props) {
@@ -30,10 +31,6 @@ class MainTable extends Component {
     // this.toggleRow = this.toggleRow.bind(this);
   }
   componentDidMount() {
-    // refactor this and bring it to it's own file...
-      // once you click pdf with the selected peeps. you're going to pass over the accountBalance to the pdf file
-      // you're going to pull in all the data again inside that file
-      // loop through it and only take the selected(s) information
     axios.get('/api/data')
     .then((response) => {
       this.setState({ data: response.data[0].data });
@@ -110,8 +107,16 @@ class MainTable extends Component {
 
 
   render() {
+
+    const csvData =[
+      ["accountNumber", "advisor", "clientssss", "accountBalance", "description", "accountValue", "moneyMarket", "buyingPower", "netBalance", "aumPercentage", "billBy"] ,
+      ["941828437", "ABC2", "Kobe Bryant", "20000000", "Kobe Bryant Account", "20000000", "2500", "0", "0", "1.5", "4"] ,
+      ["941828437", "ABC2", "Jeffrey Yourman", "5000000", "Jeffrey Yourman Account", "5000000", "2500", "0", "0", "1.5", "4"] ,
+      ["941828437", "ABC2", "Devin Booker", "10000000", "Devin Booker Account", "10000000", "2500", "0", "0", "1.5", "4"]
+    ];
+
     const selectedArray = [];
-    console.log(this.state.selected);
+    // console.log(this.state.selected);
 
       if (this.state.data === null) {
         return (
@@ -254,7 +259,7 @@ class MainTable extends Component {
                   onClick: (e, handleOriginal) => {
 
                     selectedArray.push(column.row._original);
-                    // console.log("It was in this column:", column.row._original);
+
                     this.setState({ isChecked: selectedArray })
 
                     if (handleOriginal) {
@@ -266,21 +271,16 @@ class MainTable extends Component {
             />
           <div className="container text-center ExportImportMainTable">
 
-            {/* <InvoicePDF />
-
-            <br /> */}
-            <div className="row">
+            <div style={{"width":"100%"}}className="row">
               <div className="col-md-12">
-
+                <CSVLink data={csvData} >Download example upload csv file</CSVLink>
               </div>
             </div>
-            <div className="row">
+            <div style={{"width":"100%", "marginTop": "15px"}}className="row">
               <div className="col-md-6">
                 <ImportCSV />
               </div>
               <div className="col-md-6">
-
-
                 <ExportCSV exportedData={this.state.data}/>
               </div>
             </div>

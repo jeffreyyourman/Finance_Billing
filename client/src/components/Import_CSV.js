@@ -8,7 +8,7 @@ class tableStructure {
     this.accountNumber =  a;
     this.advisor =  b;
     this.client =  c;
-    this.accountBalance =  d; 
+    this.accountBalance =  d;
     this.description =   e;
     this.accountValue =  f;
     this.moneyMarket =  g;
@@ -31,13 +31,11 @@ const handleForce = data => {
     newData.push(newObj);
     return 1;
   });
-  console.log(newData);
-  
+
   axios.post('/importData', {
     importData: newData
   })
   .then((response) => {
-    debugger;
     console.log(response);
   })
   .catch((error) => {
@@ -48,6 +46,7 @@ const handleForce = data => {
 const CSVImport = (props) => {
   return (
     <div>
+    <p style={{"float":"left"}}>Please use the example file you downloaded above</p>
     <CSVReader
       cssClass="react-csv-input"
       onFileLoaded={handleForce}
