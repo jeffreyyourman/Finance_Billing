@@ -53,7 +53,7 @@ app.post('/importData', (req, res) => {
 
       const loopedImportData = newImportData[i];
 
-      Data.update({"advisorEmail":"Travis@travis.com"}, {"$push": { "data":loopedImportData}}, function(err, updateData){
+      Data.update({"advisorEmail":"testuser@finance.com"}, {"$push": { "data":loopedImportData}}, function(err, updateData){
         if (err) throw (err);
         console.log('inside update', updateData);
     });
@@ -67,7 +67,7 @@ app.post('/updateData', (req, res) => {
 
       const loopedUpdatePercentage = newUpdatePercentage[i];
 
-    //   Data.update({"advisorEmail":"Travis@travis.com"}, {"$push": { "data":loopedImportData}}, function(err, updateData){
+    //   Data.update({"advisorEmail":"testuser@finance.com"}, {"$push": { "data":loopedImportData}}, function(err, updateData){
     //     if (err) throw (err);
     //     console.log('inside update', updateData);
     // });
