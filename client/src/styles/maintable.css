@@ -1,0 +1,29 @@
+.ExportImportMainTable {
+  padding:25px;
+}
+.bg-light{
+  background-color: aliceblue !important;
+}
+
+.table-holder{
+  height: 100vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* background-color: royalblue; */
+  border: solid thick silver;
+  background-color: white;
+  padding: 20px;
+  border-radius: 25px;
+}
+.body{
+  display: flex;
+    justify-content: center;
+  align-items: center;
+  background-color: royalblue;
+  width: 100vw;
+  height: 100%;
+  padding: 20px;
+}

@@ -1,0 +1,115 @@
+.wrapper {
+width: 100%;
+padding: 50px;
+display: flex;
+flex-direction: column;
+
+}
+
+.top-area {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.left-column {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex:2;
+}
+
+.right-column {
+    flex: 2;
+}
+
+p {
+    margin: 0;
+}
+
+.text-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 100%;
+}
+
+.label-area{
+    min-width: 100%;
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+h1 {
+    color: lightslategray;
+    opacity: 0.3;
+    text-align: right;
+    font-size: 35px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: grey;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+h5 { 
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.table-area {
+    width:100%;
+
+}
+
+table {
+    width: 100%;
+    border: solid 1px black;
+}
+
+th {
+    background: darkgray;
+    border: 1px solid black;
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.total {
+    border:1px solid white;
+    border-right: 1px solid black;
+    text-align: right;
+    padding-right: 30px;
+    font-weight: 700;
+}
+
+.total-value {
+    background: darkgray;
+}
+
+.bottom {
+    margin: 20px;
+    position: fixed;
+    bottom: 35px;
+}
+
+.bottom-text {
+    font-size: 14px;
+}
+
+.bottom-text-good {
+    color: darkblue;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-style: italic;
+}
