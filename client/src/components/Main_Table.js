@@ -21,16 +21,16 @@ class MainTable extends Component {
       userLoggedInFirstName: null,
       userLoggedInLastName: null,
       isChecked: {},
-      selected: {}, 
+      selected: {},
       selectAll: 0
     };
 
     this.renderEditable = this.renderEditable.bind(this);
 
-    this.toggleRow = this.toggleRow.bind(this);
+    // this.toggleRow = this.toggleRow.bind(this);
   }
   componentDidMount() {
-    // refactor this and bring it to it's own file... 
+    // refactor this and bring it to it's own file...
       // once you click pdf with the selected peeps. you're going to pass over the accountBalance to the pdf file
       // you're going to pull in all the data again inside that file
       // loop through it and only take the selected(s) information
@@ -44,10 +44,10 @@ class MainTable extends Component {
 
     axios.get('/profile')
     .then((response) => {
-      
-      this.setState({ 
-        userLoggedInID: response.data._id, 
-        userLoggedInEmail: response.data.email,  
+
+      this.setState({
+        userLoggedInID: response.data._id,
+        userLoggedInEmail: response.data.email,
         userLoggedInFirstName: response.data.firstName,
         userLoggedInLastName: response.data.lastName
       });
@@ -57,29 +57,29 @@ class MainTable extends Component {
     });
   }
 
-	toggleRow(client) {
-		const newSelected = Object.assign({}, this.state.selected);
-		newSelected[client] = !this.state.selected[client];
-		this.setState({
-			selected: newSelected,
-			selectAll: 2
-		});
-	}
-
-  toggleSelectAll() {
-		let newSelected = {};
-
-		if (this.state.selectAll === 0) {
-			this.state.data.forEach(x => {
-				newSelected[x.client] = true;
-			});
-		}
-
-		this.setState({
-			selected: newSelected,
-			selectAll: this.state.selectAll === 0 ? 1 : 0
-		});
-	}
+	// toggleRow(client) {
+	// 	const newSelected = Object.assign({}, this.state.selected);
+	// 	newSelected[client] = !this.state.selected[client];
+	// 	this.setState({
+	// 		selected: newSelected,
+	// 		selectAll: 2
+	// 	});
+	// }
+  //
+  // toggleSelectAll() {
+	// 	let newSelected = {};
+  //
+	// 	if (this.state.selectAll === 0) {
+	// 		this.state.data.forEach(x => {
+	// 			newSelected[x.client] = true;
+	// 		});
+	// 	}
+  //
+	// 	this.setState({
+	// 		selected: newSelected,
+	// 		selectAll: this.state.selectAll === 0 ? 1 : 0
+	// 	});
+	// }
   renderEditable(cellInfo) {
       return (
           <div
@@ -90,7 +90,7 @@ class MainTable extends Component {
                 const data = [...this.state.data];
                 data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
                 this.setState({ data });
-                
+
                 axios.post('/updateData', {
                   data: this.state.data
                 })
@@ -108,19 +108,19 @@ class MainTable extends Component {
             );
           }
 
-          
+
   render() {
     const selectedArray = [];
     console.log(this.state.selected);
-    
+
       if (this.state.data === null) {
         return (
           <div>Loading...</div>
         );
       }
-      
+
       if (this.state.userLoggedInID === undefined) {
-        return (  
+        return (
           <LoginScreen />
         )
       } else {
@@ -136,18 +136,18 @@ class MainTable extends Component {
             defaultFilterMethod={(filter, row) =>
               String(row[filter.id]) === filter.value}
               columns={[
-                  {
-                    id:"checkbox",
-                    accessor: "",
-                    Cell: ({ original }) => (
-                      <input 
-                        type="checkbox"
-                        className="checkbox"
-                        checked={this.state.selected[original.client] === true}
-									      onChange={() => this.toggleRow(original.client)}
-                      />
-                    )
-                  },
+                  // {
+                  //   id:"checkbox",
+                  //   accessor: "",
+                  //   Cell: ({ original }) => (
+                  //     <input
+                  //       type="checkbox"
+                  //       className="checkbox"
+                  //       checked={this.state.selected[original.client] === true}
+									//       onChange={() => this.toggleRow(original.client)}
+                  //     />
+                  //   )
+                  // },
                   {
                     Header: "Account Number",
                     accessor: "accountNumber",
@@ -168,7 +168,7 @@ class MainTable extends Component {
                     filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["client"] }),
                     filterAll: true
-                  },                
+                  },
                   {
                     Header: "Account Balance",
                     accessor: "accountBalance",
@@ -244,8 +244,8 @@ class MainTable extends Component {
                       <NumberFormat value={props.value} displayType={'text'} thousandSeparator={true} prefix={'$'} />
                     ),
                   }
-                
-                
+
+
               ]}
               defaultPageSize={10}
               className="-striped -highlight"
@@ -265,12 +265,26 @@ class MainTable extends Component {
               }}
             />
           <div className="container text-center ExportImportMainTable">
-            
-            <InvoicePDF />
-            <br />
-            <ImportCSV />
-            <ExportCSV exportedData={this.state.data}/>
-            
+
+            {/* <InvoicePDF />
+
+            <br /> */}
+            <div className="row">
+              <div className="col-md-12">
+
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <ImportCSV />
+              </div>
+              <div className="col-md-6">
+
+
+                <ExportCSV exportedData={this.state.data}/>
+              </div>
+            </div>
+
           </div>
         </div>
         </div>
