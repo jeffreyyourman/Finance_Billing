@@ -9,12 +9,13 @@ var MongoStore = require('connect-mongo')(session);
 var User = require('./models/user');
 var Data = require('./models/data');
 // var keys = require('./keys');
+// mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
 
 const keyUsername = process.env.mongouser;
 const keySecret = process.env.mongosecret;
 const keyApp = process.env.mongoapp;
+
 mongoose.connect(`mongodb://${keyUsername}:${keySecret}@ds141474.mlab.com:41474/${keyApp}`);
-// mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
 var db = mongoose.connection;
 
 //handle mongo error
