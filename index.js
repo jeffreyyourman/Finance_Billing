@@ -8,7 +8,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var User = require('./models/user');
 var Data = require('./models/data');
-var keys = require('./keys');
+// var keys = require('./keys');
 
 const keyUsername = process.env.mongouser;
 const keySecret = process.env.mongosecret;
