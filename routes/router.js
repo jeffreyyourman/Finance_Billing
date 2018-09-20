@@ -55,6 +55,9 @@ router.post('/login', function (req, res, next) {
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
+  // 
+  // console.log(process.env);
+  // console.log('jeff');
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {

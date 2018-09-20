@@ -8,10 +8,13 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var User = require('./models/user');
 var Data = require('./models/data');
-const keys = require('./keys')
+var keys = require('./keys');
 
-mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
-
+const keyUsername = process.env.mongouser;
+const keySecret = process.env.mongosecret;
+const keyApp = process.env.mongoapp;
+mongoose.connect(`mongodb://${KeyUsername}:${keySecret}@ds141474.mlab.com:41474/${keyApp}`);
+// mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
 var db = mongoose.connection;
 
 //handle mongo error
@@ -80,6 +83,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
+console.log('The value of PORT is:', process.env.PORT);
 const port = process.env.PORT || 5000;
 app.listen(port);
 

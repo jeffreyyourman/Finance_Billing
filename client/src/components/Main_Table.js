@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import ExportCSV from './Export_CSV';
 import ImportCSV from './Import_CSV';
-import InvoicePDF from './InvoicePDF';
+// import InvoicePDF from './InvoicePDF';
 import LoginScreen from './Login';
 import Navbar from './Navbar';
 import matchSorter from 'match-sorter';
@@ -10,7 +10,7 @@ import '.././styles/maintable.css';
 import NumberFormat from 'react-number-format';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import {CSVLink, CSVDownload} from 'react-csv';
+import {CSVLink} from 'react-csv';
 
 class MainTable extends Component {
   constructor(props) {
