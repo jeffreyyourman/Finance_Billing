@@ -8,14 +8,14 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var User = require('./models/user');
 var Data = require('./models/data');
-// var keys = require('./keys');
-// mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
+var keys = require('./keys');
+mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
 
-const keyUsername = process.env.mongouser;
-const keySecret = process.env.mongosecret;
-const keyApp = process.env.mongoapp;
-
-mongoose.connect(`mongodb://${keyUsername}:${keySecret}@ds141474.mlab.com:41474/${keyApp}`);
+// const keyUsername = process.env.mongouser;
+// const keySecret = process.env.mongosecret;
+// const keyApp = process.env.mongoapp;
+//
+// mongoose.connect(`mongodb://${keyUsername}:${keySecret}@ds141474.mlab.com:41474/${keyApp}`);
 var db = mongoose.connection;
 
 //handle mongo error
@@ -59,7 +59,7 @@ app.post('/importData', (req, res) => {
 
       Data.update({"advisorEmail": req.session.email}, {"$push": { "data":loopedImportData}}, function(err, updateData){
         if (err) throw (err);
-        console.log('inside update', updateData);
+        console.log('Import successful');
     });
   }
 });
@@ -84,7 +84,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
-console.log('The value of PORT is:', process.env.PORT);
 const port = process.env.PORT || 5000;
 app.listen(port);
 

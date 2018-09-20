@@ -42,7 +42,9 @@ router.post('/login', function (req, res, next) {
         err.status = 401;
         return next(err);
       } else {
+        
         req.session.userId = user._id;
+        req.session.email = user.email;
         return res.redirect('/profile');
       }
     });
@@ -55,7 +57,7 @@ router.post('/login', function (req, res, next) {
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
-  // 
+  //
   // console.log(process.env);
   // console.log('jeff');
   User.findById(req.session.userId)
