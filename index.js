@@ -13,7 +13,7 @@ var Data = require('./models/data');
 const keyUsername = process.env.mongouser;
 const keySecret = process.env.mongosecret;
 const keyApp = process.env.mongoapp;
-mongoose.connect(`mongodb://${KeyUsername}:${keySecret}@ds141474.mlab.com:41474/${keyApp}`);
+mongoose.connect(`mongodb://${keyUsername}:${keySecret}@ds141474.mlab.com:41474/${keyApp}`);
 // mongoose.connect(`mongodb://${keys.username}:${keys.secret}@ds141474.mlab.com:41474/${keys.app}`);
 var db = mongoose.connection;
 
